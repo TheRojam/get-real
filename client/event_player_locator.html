@@ -1,0 +1,76 @@
+<template name="event_player_locator">
+  <div class="content-bubbles">
+    <div class='container' style="background-color: #{{playerColor}}">
+      <div class="row">
+        <div class="col s12 center">
+          {{#if Template.subscriptionsReady}}
+            {{#with userData}}
+              <div class="div-event-player" style="background-color: #{{playerColor}}"></div>
+
+              {{#if inTutorial}}
+
+                <div id="player-locator-spacer"></div>
+
+                <div class="tutorial-fixed panel green accent-2 row tooltipped" data-tooltip='{{_ "you_are_in_tutorial"}}'>
+                  {{_ "tutorial_mode"}}
+                  <i class="tiny material-icons bounce-out-bck-5s supper">info_outline</i>
+                </div>
+                <script>
+                  $('.tooltipped').tooltip();
+                </script>
+
+              {{else}}
+
+                <div class="tutorial-fixed black-text row tooltipped" data-tooltip='{{_ "your_color_text"}}'>
+                  <i class="small material-icons">info_outline</i>
+                </div>
+                <script>
+                  $('.tooltipped').tooltip();
+                </script>
+
+              {{/if}}
+
+              <div id="player-locator-spacer"></div>
+              <div class="row">
+                <div class="col s12">
+                  <span class="big-white-title">{{_ "today_date"}}</span>
+                  <img src="{{user.profile.photo}}" class="big-profile-picture">
+                </div>
+              </div>
+              <div class="row panel">
+                <div class="col s12">
+                  <span class="title">{{user.profile.name}}</span>
+                </div>
+              </div>
+              <div class="text-center panel row">
+                <div class="col s12">
+                  {{_ "look_around"}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12 center">
+                  <button class="btn waves-effect flat" id="date_screen">{{_ "found_date"}}</button>
+                </div>
+              </div>
+              <div class="row no-margins">
+                <div class="col s12 center">
+                  <button class="btn waves-effect btn-flat" id="event">{{_ "location_address"}}</button>
+                </div>
+              </div>
+
+            {{/with}}
+            <div class="row">
+              <div class="col s12 center">
+                <span class="wait-text grey-text text-lighten-3">{{_ "date_ends_in"}} {{{dateCountdownClock}}}</span>
+              </div>
+            </div>
+
+            {{> side_nav}}
+            <div class="row"></div>
+          {{/if}}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

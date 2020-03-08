@@ -1,0 +1,131 @@
+<template name="date_screen">
+  <div class="content-bubbles">
+    <div class='container'>
+      <div class="row">
+        <div class="col s12 center">
+
+          <div class="date-screen-spacer"></div>
+
+          <div class="row center">
+            <div class="col s3"></div>
+            <div class="col s6">
+              <img src='/img/logo-white-red.png' class="responsive-img">
+            </div>
+            <div class="col s3"></div>
+          </div>
+
+          {{#if Template.subscriptionsReady}}
+            {{#with userData}}
+
+              {{#if inTutorial}}
+
+                <div id="date-screen-spacer"></div>
+
+                <div class="tutorial-fixed panel green accent-2 row tooltipped" data-tooltip='{{_ "you_are_in_tutorial"}}'>
+                  {{_ "tutorial_mode"}}
+                  <i class="tiny material-icons bounce-out-bck-5s supper">info_outline</i>
+                </div>
+                <script>
+                  $( document ).ready(function() {
+                    $('.tooltipped').tooltip();
+                  });
+                </script>
+
+
+              {{/if}}
+
+              {{#if stillDate}}
+
+                <div class="date-screen-spacer"></div>
+
+                <div class="title row  center white-text">
+                  <div class="col s12">
+                    {{_ "dating_principles_title"}}
+                  </div>
+                </div>
+
+                {{> principles_on_date}}
+
+                <div class="date-screen-spacer"></div>
+
+                <div class="title row center white-text">
+                  <div class="col s12">
+                    {{_ "today_date"}}
+                  </div>
+                </div>
+
+
+                <div class="row valign-wrapper panel" id="chat_history" style="background-color: #{{playerColor match.seedColor}}">
+
+                  <div class="col s2 ranking-picture-container">
+                    <img class="ranking-picture"  src="{{user.profile.photo}}">
+                  </div>
+                  <div class="col s8">
+                    <div class="row no-margins left-align">
+                      <div class="col s12 title">
+                        {{user.profile.name}}
+                      </div>
+                    </div>
+                    <div class="row no-margins left-align">
+                      <div class="col s12 title">
+                        {{> chat_progress_bar matchId = match._id}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s2">
+                    <i class="material-icons small link-icon">keyboard_arrow_right</i>
+                  </div>
+
+                </div>
+
+                <div class="center row panel red accent-2">
+                  <div class="col s12 grey-text text-darken-3">
+                    {{_ "date_ends_in"}} {{{dateCountdownClock}}}
+                  </div>
+                </div>
+
+              {{else}}
+
+              <div class="date-screen-spacer"></div>
+
+              <div class="row slide-in-fwd-center">
+                <div class="col s12">
+                  <div class="panel">
+                    <div class="row">
+                      <div class="col s12 title red-text text-accent-2">
+                       {{_ "after_date_before_feedback_title"}}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 justified">
+                        {{{_ "after_date_before_feedback_text"}}}
+                      </div>
+                    </div>
+                 </div>
+                </div>
+              </div>
+
+              <div class="title row  center white-text">
+                <div class="col s12">
+                  {{_ "feedback_principles_title"}}
+                </div>
+              </div>
+
+              {{> principles_after_date}}
+
+              <div class="center row panel red accent-2">
+                <div class="col s12 grey-text text-darken-3">
+                  {{_ "feedback_starts_at"}} {{{feedbackCountdownClock}}}
+                </div>
+              </div>
+
+              {{/if}}
+            {{/with}}
+          {{/if}}
+        </div>
+      </div>
+      {{> side_nav}}
+      <div class="row"></div>
+    </div>
+  </div>
+</template>

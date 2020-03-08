@@ -1,0 +1,50 @@
+<template name="home">
+  <div class="content-login">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 center">
+          <img src='/img/logo-white-red.png' class="responsive-img top-logo">
+          <div class="row panel panel-paddings slide-out-bck-center-5s">
+            <div class="col s12">
+              <div class="row">
+                <div class="col s12 justified">
+                 {{_ "almost_there"}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12">
+                  <button class="btn waves-effect waves-light green accent-2 new_user">{{_ "signup_form"}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12 center red-text">
+              <span id="user-data-helper" class="helper-text red-text text-accent-2"></span>
+            </div>
+          </div>
+
+          <form role="form" class="loginComponent-form" action="">
+            <div class=" input-field">
+              <input class="white-text" type="tel" id="login-number" value="{{mobilePhone}}">
+              <label for="login-number" class="{{#if mobilePhone }} active {{/if}}">{{_ 'mobile_international'}}</label>
+              <span id="login-number-helper" class="helper-text red-text text-accent-2"></span>
+            </div>
+            <div class=" input-field">
+              <input class="form-control white-text" type="password" id="login-password">
+              <label for="login-password">{{_ 'password'}}</label>
+              <span id="login-password-helper" class="helper-text red-text text-accent-2"></span>
+            </div>
+            <div class=" input-field">
+              <button class='btn waves-effect waves-light' style='margin-top:0.5em;' id="login-event">{{_ 'Login'}}</button>
+            </div>
+          </form>
+          <!-- <div class='btn-link' style='margin-top:0.5em;'>{{_ "Forgot your password"}}</div> -->
+          <button class="btn waves-effect waves-light green accent-2 slide-in-fwd-center-5s new_user">{{_ "signup_form"}}</button>
+          <button class="btn btn-flat waves-effect waves-light grey-text text-darken-1" id="reset_password">{{_ "reset_password_btn"}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

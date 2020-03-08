@@ -1,0 +1,58 @@
+<template name="rejected_ticket">
+  <div class="content-bubbles">
+    <div class='container'>
+      <div class="row">
+         <div class="col s12 center">
+           <div id="event-registration-spacer"></div>
+           <div class="row center">
+             <div class="col s2"></div>
+             <div class="col s8">
+               <img src='/img/logo-white-red.png' class="responsive-img">
+             </div>
+             <div class="col s2"></div>
+           </div>
+           {{#if Template.subscriptionsReady}}
+             {{#with ticket}}
+
+               <div class='row text-focus-in-title red-text text-accent-2'>
+                 <div class="col s12">
+                   {{_ "we_sorry"}}
+                 </div>
+               </div>
+               <div class='row panel sorry-no-date'>
+                 <div class="col s12 justify">
+                   <p class="text-focus-in-1s">
+                     {{_ "no_matches_tonight"}}
+                   </p>
+                   <p class="text-focus-in-3s">
+                     {{_ "ticket_back" user.availableTickets}}
+                   </p>
+                   <p class="text-focus-in-5s">
+                     {{_ "try_again_other_day"}}
+                   </p>
+                 </div>
+               </div>
+
+               <div class='row panel puff-in-center-7s'>
+                 <div class="col s3 no-paddings valign-wrapper">
+                   <i class="material-icons large">group_add</i>
+                 </div>
+                 <div class="col s9 justify">
+                   {{_ "friends_near_you"}}
+                 </div>
+                 <button class='btn waves-effect green accent-2' id="invite_friends">{{_ "invite_friends"}}</button>
+               </div>
+
+               <div class='row'>
+                 <div class="col s12 center">
+                   <button class='btn waves-effect red accent-2' id="event_registration">{{_ "ok"}}</button>
+                 </div>
+               </div>
+
+             {{/with}}
+           {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

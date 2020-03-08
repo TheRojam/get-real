@@ -1,0 +1,72 @@
+<template name="SMS_verification">
+  <div class="content-login">
+    <div class='container'>
+      <div class="row">
+         <div class="col s12 center">
+          <div style="display:table; width: 100%; height: 100%;">
+            <br>
+            <img src="/img/logo-white-red.png" style="margin-top:5em; margin-bottom: 5em; max-width:320px;">
+            <br>
+          </div>
+
+          <div class="row slide-in-fwd-center">
+            <div class="col s12">
+              <div class="panel red accent-2">
+                <div class="row">
+                  <div class="col s12 title">
+                   {{_ "welcome_verification"}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 justified">
+                    {{{_ "SMS_verification_text"}}}
+                  </div>
+                </div>
+             </div>
+            </div>
+          </div>
+
+          <div class="row slide-in-fwd-center-2s">
+            <div class="col s12">
+              <div class="panel">
+                <p>{{_ "enter_verification_code"}}</p>
+                <div class="input-field verification_code_input">
+                  <input id="verification_code" type="text">
+                  <label for="verification_code" class="grey-text text-darken-2">{{_ "verification_code_input"}}</label>
+                  <span id="verification_code_helper" class="helper-text red-text text-accent-2"></span>
+               </div>
+               <button href="" id="sent_verification_code" class="btn waves-effect">{{_ "check_verification_code"}}</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row slide-in-fwd-center-5s">
+            <div class="col s12">
+              <div class="panel panel-paddings">
+                <div class="row">
+                  <div class="col s12 justified">
+                   {{_ "SMS_logged_in_as" userName }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12">
+                    <button href="" id="SMS-logout" class="btn-flat waves-effect red-text text-accent-2">{{_ "sn_log_out"}}</button>
+                  </div>
+                </div>
+             </div>
+            </div>
+          </div>
+
+          {{#if SMSDelay}}
+            <div class="row slide-in-fwd-center-5s">
+              <div class="col s12">
+                <button href="" id="resend_SMS_btn" class="btn waves-effect green accent-2">{{_ "resend_SMS_btn"}}</button>
+              </div>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+      <div class="row"></div>
+    </div>
+  </div>
+</template>

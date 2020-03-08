@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "343760448637",
+    "firebase_url": "https://getreal-92d84.firebaseio.com",
+    "project_id": "getreal-92d84",
+    "storage_bucket": "getreal-92d84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343760448637:android:4db43401c0f88b99",
+        "android_client_info": {
+          "package_name": "com.getreal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "343760448637-akussp8rfuao4qvb7tps8099fitteu7f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXG6wTUqUGuSnmwIy4VlQdE-m8hj3HHpQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

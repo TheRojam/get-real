@@ -1,0 +1,149 @@
+<template name="game_waiting">
+  <div class="content-bubbles">
+    <div class='container'>
+      <div class="row">
+         <div class="col s12 center">
+
+          {{#if Template.subscriptionsReady}}
+            {{#with userData}}
+
+              {{#if inTutorial}}
+
+                <div id="event-registration-spacer"></div>
+
+                <div class="tutorial-fixed panel green accent-2 row tooltipped" data-tooltip='{{_ "you_are_in_tutorial"}}'>
+                  {{_ "tutorial_mode"}}
+                  <i class="tiny material-icons bounce-out-bck-5s supper">info_outline</i>
+                </div>
+                <script>
+                  $('.tooltipped').tooltip();
+                </script>
+
+
+              {{/if}}
+
+              <div id="event-registration-spacer"></div>
+              <div class="panel row tooltipped" data-position="top" data-tooltip='{{_ "born in"}} {{profile.birthYear}}, {{_ profile.gender}} {{_ "searching_for"}} {{_ profile.genderWanted}}'>
+                <div class="col s2 left">
+                  {{#if profile.photo}}
+                    <img src="{{profile.photo}}" class="img-event-registration circle" />
+                  {{/if}}
+                </div>
+                <div class="col s8 center">
+                  <div class="title red-text text-accent-2 no-bottom-margin" style="margin-bottom: 0.3em;">
+                    {{profile.name}}
+                    <i class="tiny material-icons bounce-out-bck-5s supper">info_outline</i>
+                  </div>
+                   {{_ "available_tickets" reducedTickets}}
+                </div>
+              </div>
+            {{/with}}
+            {{#with area}}
+
+            <div class="row panel panel-paddings">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12 justified">
+                   {{_ "reason_for_waiting"}}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              <div class="row panel sorry-no-date">
+                <div class="col s12">
+                  <span>{{_ "chat_starts_in"}}</span>
+                  <div id="countdown-header">
+                    {{{countdownClock}}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row panel">
+                <div class="col s12">
+                  <div class="row no-margins">
+                    <div class="col s12 center title red-text text-accent-2 margin-bottom">
+                      {{message}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s6 right-align">
+                      {{_ "in_area"}}
+                    </div>
+                    <div class="col s6 red-text text-accent-2 no-bottom-margin left-align">
+                      {{area.name}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s6 right-align">
+                      {{eventDay}}. {{_ eventMonth}}
+                    </div>
+                    <div class="col s6 red-text text-accent-2 no-bottom-margin left-align">
+                      {{_ gameDay}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s6 right-align">
+                      {{_ "chat_game"}}:
+                    </div>
+                    <div class="col s6 left-align">
+                      <span  class="red-text text-accent-2 no-bottom-margin">{{gameStart}}</span>
+                      -
+                      <span  class="red-text text-accent-2 no-bottom-margin">{{gameFinish}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s6 right-align">
+                      {{_ "real_date"}}:
+                    </div>
+                    <div class="col s6 left-align">
+                      <span  class="red-text text-accent-2 no-bottom-margin">{{eventStart}}</span>
+                      -
+                      <span  class="red-text text-accent-2 no-bottom-margin">{{eventFinish}}</span>
+                    </div>
+                  </div>
+                  <div class="row no-bottom-margin">
+                    <div class="col s12 grey-text text-darken-2 text-focus-in">
+                      {{_ "booking_behaviour"}}
+                    </div>
+                  </div>
+                  {{> booking_progress_bar gameId = game._id }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col s12">
+                  <button class="btn waves-effect waves-light green accent-2" id="read-principles"><i class="material-icons left">info</i>{{_ "read_principles"}}</button>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col s12 center">
+                  <button class="btn waves-effect waves-light red accent-2" id="exit-game-btn">{{_ "exit_get_real"}}</button>
+                </div>
+              </div>
+
+              <div class="row panel panel-paddings slide-in-fwd-center-5s">
+                <div class="col s12">
+                  <div class="row">
+                    <div class="col s12 justified">
+                     {{_ "cat_contribute_gamecard"}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12 center">
+                      <button class="btn waves-effect waves-light green accent-2" id="contribute-btn">{{_ "contribute_btn"}}</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            {{/with}}
+          {{/if}}
+        </div>
+      </div>
+      {{> side_nav}}
+      <div class="row"></div>
+    </div>
+  </div>
+</template>

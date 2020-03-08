@@ -1,0 +1,111 @@
+<!-- <template name="side_nav">
+  <ul id="slide-out" class="sidenav left-align">
+    {{#if Template.subscriptionsReady}}
+      {{#with userData}}
+        <li class="grey darken-3 white-text">
+          <div class="center">
+
+            {{#if profile.photo}}
+              <img src="{{profile.photo}}" class="img-side_nav">
+            {{/if}}
+          </div>
+          <div class="center">
+            <span class="red-text text-accent-2 title">{{profile.name}}</span>
+          </div>
+        </li>
+        <li><a href="#!" class="waves-effect" id="sn-to-event-registration"><i class="material-icons red-text text-accent-2">loyalty</i>{{_ "apply_date"}}</a></li>
+        <li><a href="#!" class="waves-effect" id="sn-to-profile"><i class="material-icons">account_circle</i>{{_ "edit_profile"}}</a></li>
+        <li><div class="divider no-margins"></div></li>
+        <li><a href="#!" class="waves-effect" id=""><i class="material-icons">payment</i>Coins kaufen</a></li>
+        <li><a href="#!" class="waves-effect" id=""><i class="material-icons">group_add</i>Coins gewinnen</a></li>
+        <li><div class="divider no-margins"></div></li>
+        <li><a href="#!" class="waves-effect" id=""><i class="material-icons">record_voice_over</i>Beitragen</a></li>
+        <li><a href="#!" class="waves-effect" id=""><i class="material-icons">whatshot</i>Date Tipps</a></li>
+        <li><div class="divider no-margins"></div></li>
+        <li><a href="#!" class="waves-effect" id="sn-logout"><i class="material-icons">power_settings_new</i>{{_ "log_out"}}</a></li>
+      {{/with}}
+    {{/if}}
+  </ul>
+
+  <a href="#" data-target="slide-out" class="sidenav-trigger btn-floating grey darken-2 waves-effect" id="bottom-right-btn">
+    <i class="large material-icons red-text text-accent-2">menu</i>
+  </a>
+</template> -->
+
+
+
+<template name="side_nav">
+  <ul id="slide-out" class="sidenav grey darken-2 white-text left-align">
+    {{#if Template.subscriptionsReady}}
+      {{#with userData}}
+        <li>
+          <div class="center">
+
+            {{#if profile.photo}}
+              <img src="{{profile.photo}}" class="img-side_nav">
+            {{/if}}
+          </div>
+          <div class="center">
+            <span class="red-text text-accent-2 title">{{profile.name}}</span>
+          </div>
+        </li>
+
+
+        <li><a href="" class="{{#if checkGetRealDatingURL}} subheader red-text text-accent-2 {{else}} waves-effect white-text {{/if}}" id="sn-to-getreal-dating">
+          <i class="material-icons {{#if checkGetRealDatingURL}} red-text text-accent-2 {{else}} white-text {{/if}}">loyalty</i>{{_ "sn_getreal_dating"}}
+        </a></li>
+
+        {{#if checkInGame}}
+          <li><a href="" class="{{#if checkDateHistoryURL}} subheader red-text text-accent-2 {{else}} waves-effect white-text {{/if}}" id="sn-to-date-history">
+            <i class="material-icons {{#if checkDateHistoryURL}} red-text text-accent-2 {{else}} white-text {{/if}}">folder_shared</i>{{_ "sn_date_history"}}
+          </a></li>
+        {{/if}}
+
+        <li><div class="divider no-margins"></div></li>
+
+        <li><a href="" class="{{#if checkInvitionsURL}} subheader red-text text-accent-2 {{else}} waves-effect white-text {{/if}}" id="sn-to-invite">
+          <i class="material-icons {{#if checkInvitionsURL}} red-text text-accent-2 {{else}} white-text {{/if}}">group_add</i>{{_ "sn_invite"}}
+        </a></li>
+
+        <li><a href="" class="{{#if checkContributionURL}} subheader red-text text-accent-2 {{else}} waves-effect white-text {{/if}}" id="sn-to-contribution">
+          <i class="material-icons {{#if checkContributionURL}} red-text text-accent-2 {{else}} white-text {{/if}}">lightbulb_outline</i>{{_ "sn_contribute"}}
+        </a></li>
+
+        <!-- <li><div class="divider no-margins"></div></li>
+        <li><a href="" class="waves-effect white-text" id=""><i class="material-icons white-text">payment</i>Coins kaufen</a></li>
+        <li><a href="" class="waves-effect white-text" id=""><i class="material-icons white-text">group_add</i>Coins gewinnen</a></li> -->
+
+        <li><div class="divider no-margins"></div></li>
+
+        <li><a href="" class="{{#if checkProcedureURL}} subheader red-text text-accent-2 {{else}} waves-effect white-text {{/if}}" id="sn-to-procedure">
+          <i class="material-icons {{#if checkProcedureURL}} red-text text-accent-2 {{else}} white-text {{/if}}">format_list_numbered</i>{{_ "sn_procedure"}}
+        </a></li>
+
+        <li><a href="" class="{{#if checkPrinciplesURL}} subheader red-text text-accent-2 {{else}} waves-effect white-text {{/if}}" id="sn-to-principles">
+          <i class="material-icons {{#if checkPrinciplesURL}} red-text text-accent-2 {{else}} white-text {{/if}}">info</i>{{_ "sn_principles"}}
+        </a></li>
+
+
+        <!-- <li><a href="" class="waves-effect white-text" id=""><i class="material-icons white-text">whatshot</i>Date Tipps</a></li> -->
+
+        <li><a href="" class="{{#if checkSupportURL}} subheader red-text text-accent-2 {{else}} waves-effect white-text {{/if}}" id="sn-to-support">
+          <i class="material-icons {{#if checkSupportURL}} red-text text-accent-2 {{else}} white-text {{/if}}">help</i>{{_ "sn_to_support"}}
+        </a></li>
+
+        <li><div class="divider no-margins"></div></li>
+
+        {{#if checkInGame}}
+          <li><a href="" class="{{#if checkProfileURL}} subheader red-text text-accent-2 {{else}} waves-effect white-text {{/if}}" id="sn-to-profile">
+            <i class="material-icons {{#if checkProfileURL}} red-text text-accent-2 {{else}} white-text {{/if}}">account_circle</i>{{_ "sn_edit_profile"}}
+          </a></li>
+        {{/if}}
+
+        <li><a href="" class="waves-effect white-text" id="sn-logout"><i class="material-icons white-text">power_settings_new</i>{{_ "sn_log_out"}}</a></li>
+      {{/with}}
+    {{/if}}
+  </ul>
+
+  <a href="#" data-target="slide-out" class="bounce-in-sidenav sidenav-trigger btn-floating grey darken-2 waves-effect" id="bottom-right-btn">
+    <i class="large material-icons red-text text-accent-2">menu</i>
+  </a>
+</template>

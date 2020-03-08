@@ -1,0 +1,128 @@
+<template name="chat_menu">
+  <div class="content-bubbles">
+    <div class='container'>
+      <div class="row">
+         <div class="col s12 center">
+            {{#if Template.subscriptionsReady}}
+
+              {{#with data}}
+                {{#if inTutorial}}
+
+                  <div id="chat-menu-spacer"></div>
+
+                <div class="tutorial-fixed panel green accent-2 row tooltipped" data-tooltip='{{_ "you_are_in_tutorial"}}'>
+                  {{_ "tutorial_mode"}}
+                  <i class="tiny material-icons bounce-out-bck-5s supper">info_outline</i>
+                </div>
+                <script>
+                  $('.tooltipped').tooltip();
+                </script>
+
+
+                {{/if}}
+
+                <div id="chat-menu-spacer"></div>
+
+                <div id="please_prioritize" class=" green accent-2 panel row">
+                  <div class="col s12">
+                    {{_ "please_prioritize"}}
+                  </div>
+                </div>
+                <div id="chat_menu_header" class="panel row">
+                  <div class="col s12">
+                    {{_ "chat_menu_header"}}
+                  </div>
+                </div>
+
+                <div class="row chat-menu-boxes">
+                  <div class="col s2">
+                    <ul>
+                      {{#each matches}}
+                        <li class="no-margins table-view-cell media ranking-entry navigate-right">
+                          <div class="row no-margins ranking-entry">
+                            <div class="col s12 ranking-number-container rank-numbers grey-text valign-wrapper">
+                              {{addOne @index}}.
+                            </div>
+                          </div>
+                        </li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                  <div class="col s10">
+                    <ul id="sortable-matches" class="ranking-list">
+                      {{#each matches}}
+                        <li class="matchSelector no-margins table-view-cell media ranking-entry navigate-right" data-position="{{ranking.position}}" data-rankingid="{{ranking._id._str}}" data-matchid="{{_id._str}}" data-id="{{otherPlayer._id}}" id="{{_id._str}}" value="{{_id._str}}">
+                          <div class="row valign-wrapper no-margins white ranking-entry">
+                            <div class="col s2 ranking-picture-container">
+                              <img style="{{blurImage _id}}" class="ranking-picture"  src="{{otherPlayer.profile.photo}}">
+                            </div>
+                            <div class="col s7">
+                              {{otherPlayer.profile.name}}
+                              {{> chat_progress_bar matchId = _id}}
+                            </div>
+                            <div class="col s1 icon-more-vertical">
+                              <i class="material-icons small {{#if isFinished}} green-text {{else}} red-text {{/if}} text-accent-2">{{status}}</i>
+                            </div>
+                            <div class="col s2 icon-more-vertical">
+                              <i class="material-icons small link-icon">keyboard_arrow_right</i>
+                              <i class="material-icons small sort-icon" style="display: none;">unfold_more</i>
+                            </div>
+
+                          </div>
+                        </li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                </div>
+                <!-- {{#if gameFinished}}
+                {{#unless timeNotYet}}
+                  <div class="panel">
+                    {{_ "prioritize_two_minutes"}}
+                  </div>
+                {{/unless}}
+                <div class="text-center">
+                  {{#if timeNotYet}}
+                    <div class="panel">
+                      {{_ "getreal_found_your_best"}}
+                    </div>
+                    <button id="event" class="btn btn-primary btn-block" style="text-transform: uppercase;">{{_ "let_getreal"}}</button>
+                  {{else}}
+                    <div class="panel text-center">
+                      {{{countdownClock}}}
+                    </div><br>
+                    <div class="panel">
+                      {{_ "after_that"}}
+                    </div>
+                  {{/if}}
+                </div>
+                {{else}}
+                <div class="text-center-game">
+                  <div class="btn btn-primary btn-block" id="back">{{_ "back_upper"}}</div>
+                </div>
+                {{/if}} -->
+
+                <div class="row chat-menu-boxes">
+                  <div class="col s12 center">
+                    <div class="btn wave-effect red accent-2" id="prioritize_btn">{{_ "prioritize_btn"}}</div>
+                    <div class="btn wave-effect green accent-2" id="menu_btn"  style="display: none">{{_ "back_menu_btn"}}</div>
+                  </div>
+                </div>
+
+                <div class="panel row">
+                  <div style="text-align:justify" class="col s12">
+                    {{_ "prioritize_explanation"}}
+                  </div>
+                </div>
+              {{/with}}
+              <div class="row">
+                <div class="col s12 center">
+                  <div class="grey-text text-darken-1">{{_ "chat_ends_in"}} {{{countdownClock}}}</div>
+                </div>
+              </div>
+            {{/if}}
+        </div>
+      </div>
+      <div class="row"></div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,193 @@
+<template name="contribution_form">
+
+  <ul class="collapsible">
+      <li>
+        <div class="collapsible-header top-border-radius">
+          <i class="material-icons">forum</i>{{_ "contribute_gamecard"}}
+        </div>
+        <div class="collapsible-body">
+          <div class="panel contribution-form-spacer">{{_ "contribute_gamecard_text"}}</div>
+
+          <div id="question_form">
+
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field">
+                  <i class="material-icons prefix white-text">help</i>
+                 <textarea id="question_contribution" type="text" class="materialize-textarea white-text"></textarea>
+                 <label for="question_contribution">{{_ "contribute_question"}}</label>
+               </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field">
+                  <i class="material-icons prefix white-text">exposure_plus_2</i>
+                 <textarea id="embrace_contribution" type="text" class="materialize-textarea white-text"></textarea>
+                 <label for="embrace_contribution">{{_ "contribute_embrace"}}</label>
+               </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field">
+                  <i class="material-icons prefix white-text">exposure_plus_1</i>
+                 <textarea id="positive_contribution" type="text" class="materialize-textarea white-text"></textarea>
+                 <label for="positive_contribution">{{_ "contribute_positive"}}</label>
+               </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field">
+                  <i class="material-icons prefix white-text">exposure_neg_1</i>
+                 <textarea id="negative_contribution" type="text" class="materialize-textarea white-text"></textarea>
+                 <label for="negative_contribution">{{_ "contribute_negative"}}</label>
+               </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field">
+                  <i class="material-icons prefix white-text">exposure_neg_2</i>
+                 <textarea id="hate_contribution" type="text" class="materialize-textarea white-text"></textarea>
+                 <label for="hate_contribution">{{_ "contribute_hate"}}</label>
+               </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field">
+                  <i class="material-icons prefix white-text">exposure_zero</i>
+                 <textarea id="avoid_contribution" type="text" class="materialize-textarea white-text"></textarea>
+                 <label for="avoid_contribution">{{_ "contribute_avoid"}}</label>
+               </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <div class="input-field">
+                  <i class="material-icons prefix white-text">comment</i>
+                 <textarea id="note_contribution" type="text" class="materialize-textarea white-text"></textarea>
+                 <label for="note_contribution">{{_ "contribute_note"}}</label>
+               </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col s12 center">
+                <button class="btn waves-effect {{#if gameCardComplete }} disabled {{/if}}" id="question_contribution_btn">{{_ "question_contribution_btn"}}</button>
+              </div>
+            </div>
+
+          </div>
+
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header">
+        <i class="material-icons">business</i>{{_ "contribute_location"}}
+      </div>
+      <div class="collapsible-body">
+        <div class="panel contribution-form-spacer">{{_ "contribute_location_text"}}</div>
+
+        <div id="location_form">
+
+          <div class="row">
+            <div class="col s12">
+              <div class="input-field">
+                <i class="material-icons prefix white-text">business</i>
+                <textarea id="location_name_contribution" type="text" class="materialize-textarea white-text"></textarea>
+                <label for="location_name_contribution">{{_ "contribute_location_name"}}</label>
+             </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12">
+              <div class="input-field">
+                <i class="material-icons prefix white-text">location_on</i>
+               <textarea id="location_city_contribution" type="text" class="materialize-textarea white-text"></textarea>
+               <label for="location_city_contribution">{{_ "contribute_location_city"}}</label>
+             </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12">
+              <div class="input-field">
+                <i class="material-icons prefix white-text">search</i>
+               <textarea id="location_search_contribution" type="text" class="materialize-textarea white-text" placeholder='{{_ "contribute_location_search_placeholder"}}'></textarea>
+               <label for="location_search_contribution" class="active">{{_ "contribute_location_search"}}</label>
+             </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12">
+              <div class="input-field">
+                <i class="material-icons prefix white-text">comment</i>
+               <textarea id="location_notes_contribution" type="text" class="materialize-textarea white-text"></textarea>
+               <label for="location_notes_contribution">{{_ "contribute_location_note"}}</label>
+             </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12 center">
+              <button class="btn waves-effect {{#if locationComplete }} disabled {{/if}}" id="location_contribution_btn">{{_ "location_contribution_btn"}}</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header bottom-border-radius">
+        <i class="material-icons">place</i>{{_ "contribute_area"}}
+      </div>
+      <div class="collapsible-body">
+        <div class="panel contribution-form-spacer">{{_ "contribute_area_text"}}</div>
+
+        <div id="area_form">
+
+          <div class="row">
+            <div class="col s12">
+              <div class="input-field">
+                <i class="material-icons prefix white-text">location_on</i>
+               <textarea id="area_name_contribution" type="text" class="materialize-textarea white-text"></textarea>
+               <label for="area_name_contribution">{{_ "contribute_area_name"}}</label>
+             </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12">
+              <div class="input-field">
+                <i class="material-icons prefix white-text">map</i>
+               <textarea id="area_country_contribution" type="text" class="materialize-textarea white-text">{{_ "Germany"}}</textarea>
+               <label for="area_country_contribution" class="active">{{_ "contribute_area_country"}}</label>
+             </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col s12 center">
+              <button class="btn waves-effect {{#if areaComplete }} disabled {{/if}}" id="area_contribution_btn">{{_ "area_contribution_btn"}}</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </li>
+  </ul>
+
+</template>

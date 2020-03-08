@@ -1,0 +1,24 @@
+<template name="area_select">
+  <div class="row">
+    <div class="input-field col s12 no-margins no-opacity" id="white-select">
+      <select id="area">
+        {{#if lastAreaId}}
+          <option value="" disabled>{{_ "choose_area"}}</option>
+        {{else}}
+          <option value="" disabled selected>{{_ "choose_area"}}</option>
+        {{/if}}
+        {{#if games}}
+          {{#each areas}}
+            {{#if isLastArea this._id}}
+              <option value="{{this._id._str}}" selected>{{this.name}}</option>
+            {{else}}
+              <option value="{{this._id._str}}">{{this.name}}</option>
+            {{/if}}
+          {{/each}}
+        {{/if}}
+        <option value="new-area">{{_ "my_area_missing"}}</option>
+      </select>
+      <!-- <label>{{_ "area_for_meeting"}}</label> -->
+    </div>
+  </div>
+</template>

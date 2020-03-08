@@ -1,0 +1,157 @@
+<template name="event_registration">
+  <div class="content-bubbles">
+    <div class='container'>
+      <div class="row">
+         <div class="col s12 center">
+
+           <div id="event-registration-spacer"></div>
+
+           <div class="row center">
+             <div class="col s2"></div>
+             <div class="col s8">
+               <img src='/img/logo-white-red.png' class="responsive-img">
+             </div>
+             <div class="col s2"></div>
+           </div>
+           {{#if Template.subscriptionsReady}}
+
+              {{#with userData}}
+
+                <div id="event-registration-spacer"></div>
+                <div class="panel row tooltipped" data-position="top" data-tooltip='{{_ "born in"}} {{profile.birthYear}}, {{_ profile.gender}} {{_ "searching_for"}} {{_ profile.genderWanted}}'>
+                  <div class="col s2 left">
+                    {{#if profile.photo}}
+                      <img src="{{profile.photo}}" class="img-event-registration circle slide-in-blurred-left" />
+                    {{/if}}
+                  </div>
+                  <div class="col s8 center">
+                    <div class="title user-name red-text text-accent-2">
+                      {{profile.name}}
+                      <i class="tiny material-icons bounce-out-bck-5s supper">info_outline</i>
+                    </div>
+                     {{_ "available_tickets" availableTickets}}
+                  </div>
+                </div>
+              {{/with}}
+
+              {{#if selectedArea}}
+
+                <div class="row">
+                  <div class="col s12 white-text text-focus-in">
+                    {{_ "area_for_meeting"}}
+                  </div>
+                </div>
+
+              {{else}}
+
+                <div class="row">
+                  <div class="col s12 white-text text-focus-in">
+                    {{_ "where_to_meet"}}
+                  </div>
+                </div>
+
+              {{/if}}
+
+              <!-- for materialize select we need to create sub-template besause of initialization -->
+              {{> area_select}}
+              <div class="white-text text-focus-in">
+                {{_ "event_information_in_area"}}
+              </div>
+
+              {{#unless selectedArea}}
+                <div class="row panel slide-in-fwd-center-2s">
+                  <div class="col s12">
+                    {{_ "select_area_meetup"}}
+                  </div>
+                </div>
+              {{else}}  <!-- selectedArea -->
+                {{#if selectedAreaHasGames}}
+                  <div class="row slide-in-fwd-center">
+                    <div class="col s12 no-padding">
+                      <ul class="tabs">
+                        {{#each selectedAreaHasGames}}
+                          {{#if gameCapacity gameId}}
+                            <li class="tab col s4"><a href="#tab-{{gameModal}}">{{gameDayLong}}</a></li>
+                          {{else}}
+                            <li class="tab col s4"><a href="#tab-{{gameModal}}">{{gameDayLong}}</a></li>
+                          {{/if}}
+
+                        {{/each}}
+                      </ul>
+                    </div>
+
+                    {{#each selectedAreaHasGames}}
+
+                      {{> event_info_tab}}
+
+                    {{/each}}  <!-- selectedAreaHasGames -->
+                  </div>  <!-- finish Tabs -->
+
+                {{else}} <!-- selectedAreaHasGames -->
+                  <div class="row panel sorry-no-date slide-in-fwd-center">
+                    <div class="col s12">
+                      <p>{{_ "we_sorry"}}</p>
+                      <p>{{_ "not_to_happen"}}</p>
+                      <p>{{_ "area_near_you"}}</p>
+                      <p>{{_ "thanks_patience"}}</p>
+                      <p>{{_ "getreal_team"}}</p>
+                    </div>
+                  </div>
+                {{/if}} <!-- selectedAreaHasGames -->
+              {{/unless}}  <!-- selectedArea -->
+
+              {{#if inTutorial}}
+
+                <div class="tutorial-fixed panel green accent-2 row tooltipped" data-tooltip='{{_ "you_are_in_tutorial"}}'>
+                  {{_ "tutorial_mode"}}
+                  <i class="tiny material-icons">info_outline</i>
+                </div>
+
+              {{/if}} <!-- inTutorial -->
+
+              <!-- Modal Structure first time -->
+              <div id="modal-first-time-event" class="modal">
+                <div class="modal-content no-bottom-paddings">
+                  <div class="row">
+                    <div class="col s12 title red-text text-accent-2">
+                     {{_ "first_time_event_title"}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12 justified">
+                      {{{_ "first_time_event_text"}}}
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer slide-in-fwd-center-2s">
+                  <a href="#!" class="modal-close waves-effect waves-green btn green accent-2" id="modal-first-time-event-btn">{{_ "ok"}}</a>
+                </div>
+              </div>
+
+              <script>
+                $( document ).ready(function() {
+                  $('.tabs').tabs({swipeable: true} );
+                  $('.modal').modal();
+                  {{#if firstTime}}
+                    $('#modal-first-time-event').modal('open');
+                  {{/if}}
+                  $('.tooltipped').tooltip();
+                });
+              </script>
+
+            {{else}}  <!-- Template.subscriptionsReady -->
+              <div style='margin-top:25em;'>
+                {{> spinner}}
+              </div>
+            {{/if}}  <!-- Template.subscriptionsReady -->
+          </div>
+        </div>
+
+        <div class="row"></div>
+
+        {{> side_nav}}
+      </div>
+    </div>
+    {{#if isNotApproved}}
+    {{/if}}
+  </template>

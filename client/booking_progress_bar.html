@@ -1,0 +1,60 @@
+<template name="booking_progress_bar">
+  {{#if Template.subscriptionsReady}}
+    {{#with bookingPercent gameId}}
+
+      <div class="row center no-bottom-margin chat-progress-row tooltipped" data-position="top" data-tooltip={{_"other_booking_rate_tip"}}>
+        <div class="col s8 center">
+          <div class="progress">
+            <div class="determinate green accent-2" style="width: {{otherRate}}%"></div>
+          </div>
+        </div>
+        <div class="col s4 right">
+          <div class="green-text text-accent-2">
+            {{otherRate}}%
+            <i class="tiny material-icons supper">info_outline</i>
+          </div>
+        </div>
+      </div>
+      {{#if hetero}}
+        <div class="row center no-bottom-margin chat-progress-row tooltipped" data-position="bottom" data-tooltip={{_"same_booking_rate_tip"}}>
+          <div class="col s8 center">
+            <div class="progress">
+              <div class="determinate red accent-2" style="width: {{sameRate}}%"></div>
+            </div>
+          </div>
+          <div class="col s4 right">
+            <div class="red-text text-accent-2">
+              {{sameRate}}%
+              <i class="tiny material-icons supper">info_outline</i>
+            </div>
+          </div>
+        </div>
+      {{/if}}
+
+    {{/with}}
+    <script>
+      $( document ).ready(function() {
+        $('.tooltipped').tooltip();
+      });
+    </script>
+  {{else}}
+
+    <div class="row center no-margins chat-progress-row tooltipped" data-position="top" data-tooltip={{_"other_booking_rate_tip"}}>
+      <div class="col s12 center">
+        <div class="progress">
+          <div class="indeterminate green accent-2"></div>
+        </div>
+      </div>
+    </div>
+    {{#if hetero}}
+      <div class="row center no-margins chat-progress-row tooltipped" data-position="bottom" data-tooltip={{_"same_booking_rate_tip"}}>
+        <div class="col s12 center">
+          <div class="progress">
+            <div class="indeterminate red accent-2"></div>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+  {{/if}}
+</template>

@@ -1,0 +1,148 @@
+<template name="principles">
+  <div class="content-bubbles">
+    <div class='container'>
+      <div class="row">
+        <div class="col s12 center">
+          <div class="principles-spacer"></div>
+
+
+           <div class="row center">
+             <div class="col s2"></div>
+             <div class="col s8">
+               <img src='/img/logo-white-red.png' class="responsive-img">
+             </div>
+             <div class="col s2"></div>
+           </div>
+
+           <div class="title row  center white-text">
+             <div class="col s12">
+               {{_ "dating_principles_title"}}
+             </div>
+           </div>
+
+          <div class="principles-spacer"></div>
+
+          {{#if Template.subscriptionsReady}}
+
+            {{#if allAccepted}}
+
+              <div class="row">
+                <div class="col s12 no-paddings">
+                  <div class="panel principles-text red accent-2">
+                    {{_ "be_realistic_stay_curious"}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col s12 no-paddings">
+                  <div class="panel principles-text principles-text">
+                    {{_ "based_on_honesty"}}
+                  </div>
+                </div>
+              </div>
+
+            {{else}}
+
+              <div class="row">
+                <div class="col s12 no-paddings">
+                  <div class="panel principles-text red accent-2">
+                    {{_ "try_create_community"}}
+                  </div>
+                </div>
+              </div>
+
+            {{/if}}
+
+            <div class="title row  center white-text">
+              <div class="col s12">
+                {{_ "principles_before_date"}}
+              </div>
+            </div>
+            {{> principles_before_date}}
+
+            {{#if acceptedBeforePrinciples}}
+              <div class="title row  center white-text">
+                <div class="col s12">
+                  {{_ "principles_on_date"}}
+                </div>
+              </div>
+              {{> principles_on_date}}
+
+              {{#if acceptedOnPrinciples}}
+                <div class="title row  center white-text">
+                  <div class="col s12">
+                    {{_ "principles_after_date"}}
+                  </div>
+                </div>
+                {{> principles_after_date}}
+
+                {{#if acceptedAfterPrinciples}}
+                  <div class="row">
+                    <div class="col s12 no-paddings">
+                      <div class="panel green accent-2">
+                        {{_ "all_accepted"}}
+                      </div>
+                    </div>
+                  </div>
+
+                  {{#if profileIncomplete}}
+                    <div class="row">
+                      <div class="col s12 center">
+                        <!-- <img src='img/next.png' id="next_event_registration"> -->
+                        <button class='btn waves-effect waves-light green accent-2' id="btn_all_accepted">
+                          {{_ 'btn_all_accepted'}}
+                        </button>
+                      </div>
+                    </div>
+                  {{else}}
+                    <div class="row">
+                      <div class="col s12 center">
+                        <button class="btn waves-effect waves-light green accent-2" id="back-btn">{{_ "back_btn"}}</button>
+                      </div>
+                    </div>
+                    {{> side_nav}}
+                  {{/if}}
+
+                {{else}}
+                  <div class="margin-top row">
+                    <div class="col s12">
+                      <label class="no-border">
+                          <input type="checkbox" id='principles_after_date' name='principles_after_date' value='true' checked="{{user.acceptedAfterPrinciples}}">
+                          <span for="principles_after_date" class="margin-bottom"> {{_ "accept_principles_after_date"}}</span><br>
+                      </label>
+                    </div>
+                  </div>
+                {{/if}}
+
+              {{else}}
+                <div class="margin-top row">
+                  <div class="col s12">
+                    <label class="no-border">
+                      <input type="checkbox" id='principles_on_date' name='principles_on_date' value='true' checked="{{user.acceptedOnPrinciples}}">
+                      <span for="principles_on_date" class="margin-bottom"> {{_ "accept_principles_on_date"}}</span><br>
+                    </label>
+                  </div>
+                </div>
+
+              {{/if}}
+
+            {{else}}
+            <div class="margin-top row">
+              <div class="col s12">
+                <label class="no-border">
+                  <input type="checkbox" id='principles_before_date' name='principles_before_date' value='true' checked="{{user.acceptedBeforePrinciples}}">
+                  <span for="principles_before_date" class="margin-bottom"> {{_ "accept_principles_before_date"}}</span><br>
+                </label>
+              </div>
+            </div>
+            {{/if}}
+
+          {{/if}}
+
+        </div>
+      </div>
+      <div class="row"></div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,10 @@
+<template name="select_birthyear">
+  <select class="profile-field" type="select" id="birthyear" placeholder="{{#if profile.birthYear}}{{profile.birthYear}}{{/if}}" value='{{#if profile.birthYear}}{{profile.birthYear}}{{/if}}'>
+    <option value="{{#if profile.birthYear}}{{profile.birthYear}}{{/if}}">{{#if profile.birthYear}}{{profile.birthYear}}{{else}}{{_ "year_birth"}}{{/if}}</option>
+    {{#each yearSelection}}
+      <option value="{{this}}">
+        {{this}}
+      </option>
+    {{/each}}
+  </select>
+</template>

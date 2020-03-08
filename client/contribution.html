@@ -1,0 +1,324 @@
+<template name="contribution">
+  <div class="content-bubbles">
+    <div class='container'>
+      <div class="row">
+        <div class="col s12 center">
+          <div id="contribution-spacer"></div>
+
+          <div class="row center">
+            <div class="col s2"></div>
+            <div class="col s8">
+              <img src='/img/logo-white-red.png' class="responsive-img">
+            </div>
+            <div class="col s2"></div>
+          </div>
+
+          <div class="title row  center white-text">
+            <div class="col s12">
+              {{_ "contributions_title"}}
+            </div>
+          </div>
+
+          {{#if Template.subscriptionsReady}}
+
+            {{#with userContributions}}
+
+              {{#if (contributed userContributions)}}
+                <div class="row">
+                  <div class="col s12">
+                    <div class="panel red accent-2 justified">
+                      {{_ "please_contribute"}}
+                    </div>
+                  </div>
+                </div>
+              {{/if}}
+
+              <div id="contribution-spacer"></div>
+
+              {{> contribution_form}}
+
+              <div class="row">
+                <div class="col s12 center">
+                  <button class="btn waves-effect waves-light green accent-2" id="back-btn">{{_ "back_btn"}}</button>
+                </div>
+              </div>
+
+
+              <div class="contribution-form-spacer"></div>
+
+              {{#if questions}}
+                <div class="row">
+                  <div class="col s12">
+                    <div class="panel red accent-2">
+                      {{_ "past_question_contributions"}}
+                    </div>
+                  </div>
+                </div>
+              {{/if}}
+
+              {{#each questions}}
+                <div class="row">
+                  <div class="col s12">
+                    <div class="panel">
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">help</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ question }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">exposure_plus_2</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ answerEmbrace }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">exposure_plus_1</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ answerPositive }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">exposure_neg_1</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ answerNegative }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">exposure_neg_2</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ answerHate }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">exposure_zero</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ answerAvoid }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">comment</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ note }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">access_time</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ dateFormat createdAt }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">assignment</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{_ status }}
+                        </div>
+                      </div>
+
+                      {{#if adminComment}}
+                        <div class="row no-margins">
+                          <div class="col s2">
+                            <i class="material-icons">assistant</i>
+                          </div>
+                          <div class="col s10 left-align icon-more-vertical">
+                            {{ adminComment }}
+                          </div>
+                        </div>
+                      {{/if}}
+
+                    </div>
+                  </div>
+                </div>
+              {{/each}}
+
+              {{#if locations}}
+                <div class="row">
+                  <div class="col s12">
+                    <div class="panel red accent-2">
+                      {{_ "past_location_contributions"}}
+                    </div>
+                  </div>
+                </div>
+              {{/if}}
+
+              {{#each locations}}
+                <div class="row">
+                  <div class="col s12">
+                    <div class="panel">
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">business</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ name }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">location_on</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ city }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">search</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ search }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">comment</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ note }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">access_time</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ dateFormat createdAt }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">assignment</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{_ status }}
+                        </div>
+                      </div>
+
+                      {{#if adminComment}}
+                        <div class="row no-margins">
+                          <div class="col s2">
+                            <i class="material-icons">assistant</i>
+                          </div>
+                          <div class="col s10 left-align icon-more-vertical">
+                            {{ adminComment }}
+                          </div>
+                        </div>
+                      {{/if}}
+
+                    </div>
+                  </div>
+                </div>
+              {{/each}}
+
+              {{#if areas}}
+                <div class="row">
+                  <div class="col s12">
+                    <div class="panel red accent-2">
+                      {{_ "past_area_contributions"}}
+                    </div>
+                  </div>
+                </div>
+              {{/if}}
+
+              {{#each areas}}
+                <div class="row">
+                  <div class="col s12">
+                    <div class="panel">
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">location_on</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ name }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">map</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ country }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">access_time</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{ dateFormat createdAt }}
+                        </div>
+                      </div>
+
+                      <div class="row no-margins">
+                        <div class="col s2">
+                          <i class="material-icons">assignment</i>
+                        </div>
+                        <div class="col s10 left-align icon-more-vertical">
+                          {{_ status }}
+                        </div>
+                      </div>
+
+                      {{#if adminComment}}
+                        <div class="row no-margins">
+                          <div class="col s2">
+                            <i class="material-icons">assistant</i>
+                          </div>
+                          <div class="col s10 left-align icon-more-vertical">
+                            {{ adminComment }}
+                          </div>
+                        </div>
+                      {{/if}}
+
+                    </div>
+                  </div>
+                </div>
+
+              {{/each}}
+
+            {{/with}}
+
+          {{/if}}
+
+
+        </div>
+      </div>
+      {{> side_nav}}
+    </div>
+  </div>
+</template>

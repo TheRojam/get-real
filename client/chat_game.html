@@ -1,0 +1,341 @@
+<template name="chat_game">
+
+  {{#if Template.subscriptionsReady}}
+
+    <div class="chat-box" style="display: none;">
+      {{#if matchUser}}
+        {{#with matchData}}
+          <div class="navbar-fixed">
+            <nav>
+              <div class="nav-wrapper grey accent-2 chat_menu_btn">
+                <a href="#" class="right navbar-clock">{{{countdownClock}}}</a>
+                <ul id="nav-mobile" class="left">
+                  <li>
+                    {{#if callToMenu}}
+                      <a class="btn-floating btn-small waves-effect waves-light red accent-2 pulse"><i class="material-icons">arrow_back</i></a>
+                    {{else}}
+                      <a class="btn-floating btn-flat btn-small waves-effect waves-light"><i class="material-icons">arrow_back</i></a>
+                    {{/if}}
+                  </li>
+                  <li>
+                      <img class="circle game-profile-picture" src="{{selectedPlayer.profile.photo}}" style="{{blurImage userMatchEndGame._id}}">
+                  </li>
+                  <li>
+                    {{ selectedPlayer.profile.name }}
+                  </li>
+                </ul>
+                <div class="row center">
+                  <div class="col s12 black-text chat-progress-higher">
+                    {{> chat_progress_bar matchId = match._id}}
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        {{/with}}  <!-- matchData -->
+      {{/if}} <!-- matchUser -->
+    </div>
+
+
+    <div class="content content-bubbles text-center" id="menu-box">
+      <div class='container'>
+        <div class="row">
+          <div class="col s12 center">
+
+              {{#with gameData}}
+                {{#if inTutorial}}
+
+                  <div id="chat-menu-spacer"></div>
+
+                  <div class="tutorial-fixed panel green accent-2 row tooltipped" data-tooltip='{{_ "you_are_in_tutorial"}}'>
+                    {{_ "tutorial_mode"}}
+                    <i class="tiny material-icons bounce-out-bck-5s supper">info_outline</i>
+                  </div>
+
+
+                {{/if}}
+
+                <div id="chat-menu-spacer"></div>
+
+                <div id="please_prioritize" class=" green accent-2 panel row">
+                  <div class="col s12">
+                    {{_ "please_prioritize"}}
+                  </div>
+                </div>
+                <div id="chat_menu_header" class="panel row">
+                  <div class="col s12">
+                    {{_ "chat_menu_header"}}
+                  </div>
+                </div>
+
+                <div class="row" id="chat-menu-boxes">
+                  <div class="col s2">
+                    <ul>
+                      {{#each matches}}
+                        <li class="no-margins table-view-cell media ranking-entry navigate-right">
+                          <div class="row no-margins ranking-entry">
+                            <div class="col s12 ranking-number-container rank-numbers grey-text valign-wrapper">
+                              {{addOne @index}}.
+                            </div>
+                          </div>
+                        </li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                  <div class="col s10">
+                    <ul id="sortable-matches" class="ranking-list">
+                      {{#each matches}}
+                        <li class="matchSelector no-margins table-view-cell media ranking-entry navigate-right" data-position="{{ranking.position}}" data-rankingid="{{ranking._id._str}}" data-matchid="{{_id._str}}" data-id="{{otherPlayer._id}}" id="{{_id._str}}" value="{{_id._str}}">
+                          <div class="row valign-wrapper no-margins white ranking-entry">
+                            <div class="col s2 ranking-picture-container">
+                              <img style="{{blurImage _id}}" class="ranking-picture"  src="{{otherPlayer.profile.photo}}">
+                            </div>
+                            <div class="col s7">
+                              {{otherPlayer.profile.name}}
+                              {{#if showAge _id}}
+                                <span class="birthyear grey-text">({{otherPlayer.profile.birthYear}})</span>
+                              {{/if}}
+                              {{> chat_progress_bar matchId = _id}}
+                            </div>
+                            <div class="col s1 icon-more-vertical">
+                              <i class="material-icons small {{#if isFinished}} green-text {{else}} red-text {{/if}} text-accent-2">{{status}}</i>
+                            </div>
+                            <div class="col s2 icon-more-vertical">
+                              <i class="material-icons small link-icon">keyboard_arrow_right</i>
+                              <i class="material-icons small sort-icon" style="display: none;">unfold_more</i>
+                            </div>
+
+                          </div>
+                        </li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s1">
+                    <div class="red-text text-accent-2 row tooltipped" data-tooltip='{{_ "prioritize_explanation"}}'>
+                      <i class="small material-icons" id="prio-tooltipp">info_outline</i>
+                    </div>
+                  </div>
+                  <div class="col s11 align-right">
+                    <div class="btn wave-effect red accent-2 btn-paddings" id="prioritize_btn"> {{_ "prioritize_btn"}} </div>
+                    <div class="btn wave-effect green accent-2 btn-paddings" id="menu_btn"  style="display: none">{{_ "back_menu_btn"}}</div>
+                  </div>
+                </div>
+
+                <script>
+                  $( document ).ready(function() {
+                    $('.tooltipped').tooltip();
+                  });
+                </script>
+
+              {{/with}}  <!-- gameData -->
+              <div class="row">
+                <div class="col s12 center">
+                  <div class="grey-text text-darken-1">{{_ "chat_ends_in"}} {{{countdownClock}}}</div>
+                </div>
+              </div>
+          </div>
+        </div>
+        {{> side_nav}}
+      </div>
+    </div>
+
+        <div class="chat-box" style="display: none;">
+          {{#if matchUser}}
+            {{#with matchData}}
+
+              <div class="content content-grey text-center">
+
+                  <div class="row">
+                     <div class="col s12 center"  id="chat-view">
+                       {{#if scrollDown}}
+                       {{/if}}
+
+
+                      {{#if match}}
+
+                        <div class="row no-margins">
+                        	<div class="col s12 center-align">
+                            {{runTurn}}
+                            {{newTurnPublished}}
+
+                            {{>messages_history_match summary.pastTurns}}
+                            {{#if mustAddSpacingOnHistory}}
+                              <div style="padding-top: 18em;"></div>
+                            {{/if}}
+
+                          </div>
+                        </div>
+
+                        {{#if gameFinished}}
+                          <div class="content-padded">
+                            <div class="row no-margins">
+                            	<div class="col s12 center-align">
+                                <p class="center big-grey-title">{{_ "chat_finished" selectedPlayer.profile.name}}</p>
+                              </div>
+                            </div>
+                            {{#if userMatchEndGame}}
+                              <div class="row no-margins">
+                              	<div class="col s12 center-align">
+                                  <img class="big-profile-picture text-center-game" src="{{userMatchEndGame.otherPlayer.profile.photo}}">
+                                </div>
+                              </div>
+                            {{/if}}
+                            <div class="row panel">
+                            	<div class="col s12 center-align justified">
+                                {{_ "prioritize_partners"}}
+                              </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col s12 center-align">
+                                <div class="btn wave-effect red accent-2 btn-paddings chat_menu_btn">{{_ "finish_other_chats_btn"}}</div>
+                              </div>
+                            </div>
+                          </div>
+
+                        {{else}}
+                            {{removeSpacingOnHistory}}
+
+                            {{#if activeUser}}
+                              {{#with turns}}
+
+                                {{#if activeUserHasChoosenQuestion}}
+                                  {{#if establishedQuestionAndPreferedAnswer}}
+                                    <!-- shows asked question & waiting info -->
+
+                                      <div class="row center no-margins">
+                                      	<div class="col s12">
+                                          <div class="row center no-margins">
+                                          	<div class="col s12">
+                                              <div class="right-question animated bounceInRight">
+                                                <div class="right-bubble">
+                                                  <div class="game-message-question">
+                                                    {{this.question}}
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                          <!-- TO DO: Check if first turn -->
+
+                                    <div class="center">
+                                      <p class="wait-text animated pulse infinite">{{_ "please_wait_answer"}}</p>
+                                    </div>
+                                    <!-- shows asked question & waiting info -->
+
+                                  {{else}} <!-- establishedQuestionAndPreferedAnswer -->
+                                    {{addSpacingOnHistory}} <!-- needs to show spacer to scroll -->
+                                    <!-- shows active user to select acceptances -->
+                                      <div class="floating-bottom-box">
+                                        <div class="row no-margins">
+                                          <div class="col s12 bar bar-tab no-padding center grey accent-2">
+                                            <div class="chat-call-to-action">{{{_ "select_acceptable_answers"}}}</div>
+                                            {{> game_answer_selection}}
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- BOTTOM SELECT AREA: active user selects question or answer -->
+
+                                    {{/if}} <!-- establishedQuestionAndPreferedAnswer -->
+                                  {{else}} <!-- activeUserHasChoosenQuestion -->
+                                  {{addSpacingOnHistory}} <!-- needs to show spacer to scroll -->
+                                  <!-- shows active User to select question -->
+                                    <div class="floating-bottom-box">
+                                      <div class="row no-margins">
+                                        <div class="col s12 bar bar-tab no-padding grey accent-2">
+                                          <div class="chat-call-to-action">{{{_ "select_question_ask" selectedPlayer.profile.name}}}</div>
+                                          {{> game_question_selection}}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  {{/if}} <!-- activeUserHasChoosenQuestion -->
+
+                              {{/with}} <!-- turns -->
+                            {{else}} <!-- activeUser -->
+                            <!-- CHATBUBBLES passive user -->
+                              {{#with turns}}
+                                {{#if activeUserHasChoosenQuestion}}
+                                  {{#if passiveSelectedAnswer this.givenAnswerImportance}}
+                                    <!-- nothing to display here -->
+                                    <div class="center">
+                                      <p class="wait-text animated pulse infinite">{{_ "Wait"}}</p>
+                                    </div>
+                                  {{else}} <!-- passiveSelectedAnswer -->
+                                  <!-- shows passive User to select answer -->
+                                    {{addSpacingOnHistory}} <!-- needs to show spacer to scroll -->
+                                    <div class="floating-bottom-box">
+                                      <div class="row no-margins">
+                                        <div class="col s12 bar bar-tab no-padding grey darken-2">
+                                          <div class="chat-call-to-action">{{{_ "answer_question" selectedPlayer.profile.name}}}</div>
+                                          {{> game_answer_selection_other_player}}
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                  {{/if}} <!-- passiveSelectedAnswer -->
+
+                                {{else}} <!-- activeUserHasChoosenQuestion -->
+                                  <div class="center">
+                                    <p class="wait-text animated pulse infinite">{{_ "please_wait_others_select_question"}}</p>
+                                  </div>
+                                {{/if}} <!-- activeUserHasChoosenQuestion -->
+                              {{/with}} <!-- turns -->
+                            {{/if}} <!-- active User -->
+
+                        {{/if}} <!-- game finished -->
+
+                  		{{/if}}
+
+                    </div>
+                  </div>
+
+              </div>
+
+          	{{/with}}  <!-- matchData -->
+          {{/if}}  <!-- matchUser -->
+        </div>
+
+        <!-- Modal Structure first time -->
+        <div id="modal-first-time-chat" class="modal">
+          <div class="modal-content">
+            <div class="row">
+              <div class="col s12 title red-text text-accent-2">
+               {{_ "first_time_chat_title"}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12 justified">
+                {{{_ "first_time_chat_text"}}}
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn green accent-2" id="modal-first-time-chat-btn">{{_ "ok"}}</a>
+          </div>
+        </div>
+
+        <script>
+          $('.modal').modal();
+          {{#if firstTime}}
+            $('#modal-first-time-chat').modal('open');
+          {{/if}}
+        </script>
+
+	{{else}} <!-- Template.subscriptionsReady -->
+     <div class='content content-grey'>
+       <div style='display:table; width: 100%; height: 100%; text-align: center;'>
+         <img src='/img/logo-white-red.png' style='margin-top:5em; margin-bottom: 5em; max-width:320px;'>
+         <br><br><br>
+         {{> spinner}}
+       </div>
+    </div>
+	{{/if}}
+
+
+
+
+</template>

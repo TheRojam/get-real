@@ -1,0 +1,19 @@
+{
+  "name": "getreal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mobile-config.js",
+  "dependencies": {
+    "@babel/runtime": "7.0.0-beta.55",
+    "@bugsnag/js": "^6.2.0",
+    "babel-runtime": "^6.23.0",
+    "bcrypt": "^1.0.2",
+    "xml2js": "^0.4.19"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "meteor": "MONGO_URL=mongodb://admin:manager@144.76.238.142:28018/getreal meteor -p 3030"
+  },
+  "author": "",
+  "license": "ISC"
+}

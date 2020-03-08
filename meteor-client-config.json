@@ -1,0 +1,12 @@
+{
+  "runtime": {
+    "DDP_DEFAULT_CONNECTION_URL": "https://client.getreal.app",
+    "ROOT_URL": "https://client.getreal.app"
+  },
+  "npmPackages": [ "core-js", "@babel/runtime@7.0.0-beta.55" ],
+  "import": [
+    "srp@=1.0.10"
+  ]
+}
+
+

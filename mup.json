@@ -1,0 +1,22 @@
+{
+  "servers": [
+    {
+      "host": "46.101.151.65",
+      "username": "root",
+      "password": "getreal2016"
+    }
+  ],
+  "setupMongo": false,
+  "setupNode": true,
+  "nodeVersion": "0.10.36",
+  "setupPhantom": true,
+  "enableUploadProgressBar": true,
+  "appName": "meteor",
+  "app": "~/repositories/getreal/src/getreal",
+  "env": {
+    "PORT": 80,
+    "ROOT_URL": "http://46.101.151.65/",
+    "MONGO_URL": "mongodb://getreal:getreal2016@ds047955.mongolab.com:47955/getreal"
+  },
+  "deployCheckWaitTime": 15
+}

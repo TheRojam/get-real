@@ -1,0 +1,109 @@
+<template name="event_info_tab">
+
+  {{#if gameCapacity gameId}}
+    <div class="col s12 white event-tab-height" id="tab-{{gameModal}}">
+      <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="col s12 center event-message">
+              {{message}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 right-align">
+              {{eventDay}}. {{_ eventMonth}}
+            </div>
+            <div class="col s6 red-text text-accent-2 no-bottom-margin left-align">
+              {{_ gameDay}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 right-align">
+              {{_ "chat_game"}}:
+            </div>
+            <div class="col s6 left-align">
+              <span  class="red-text text-accent-2 no-bottom-margin">{{gameStart}}</span>
+              -
+              <span  class="red-text text-accent-2 no-bottom-margin">{{gameFinish}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 right-align">
+              {{_ "real_date"}}:
+            </div>
+            <div class="col s6 left-align">
+              <span  class="red-text text-accent-2 no-bottom-margin">{{eventStart}}</span>
+              -
+              <span  class="red-text text-accent-2 no-bottom-margin">{{eventFinish}}</span>
+            </div>
+          </div>
+          <div class="row no-bottom-margin">
+            <div class="col s12 grey-text text-darken-2 text-focus-in">
+              {{_ "booking_behaviour"}}
+            </div>
+          </div>
+          {{> booking_progress_bar gameId = gameId }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 center">
+          <button class="btn waves-effect waves-light green accent-2 {{#unless hasTicket}} disabled {{/unless}} modal-trigger"  href="#modal-{{gameModal}}">{{#if hasTicket}} {{_ "apply_get_real"}} {{else}} {{_ "buy_ticket"}} {{/if}}</button>
+        </div>
+      </div>
+
+      {{#unless inTutorial}}
+        <div class="row slide-in-fwd-center-2s">
+          <div class="col s12 center red-text text-accent-2">
+            {{_ "apply_if_attend"}}
+          </div>
+        </div>
+      {{/unless}}  <!-- inTutorial -->
+
+    </div>
+
+    <!-- Modal Structure apply for date -->
+    <div id="modal-{{gameModal}}" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <div class="col s12 title red-text text-accent-2">
+           {{_ "apply_for_date_title"}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 justified">
+            {{{_ "apply_for_date_text" gameDayLong eventStart areaName}}}
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col s6 left">
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat red-text text-accent-2">{{_ "back"}}</a>
+          </div>
+          <div class="col s6 right">
+            <button class="modal-close waves-effect waves-green btn green accent-2 modal-apply-getreal-btn" value={{gameIdStr}}>{{_ "ok"}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {{else}}  <!-- gameCapacity -->
+
+      <div class="col s12 red-text text-accent-2 white" id="tab-{{gameModal}}">
+        <div id="event-registration-spacer"></div>
+        <div class="row">
+          <div class="col s12 center-align">
+            {{_ "full_game" gameDayLong areaName}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12 center-align">
+            {{_ "good_luck_next"}}
+          </div>
+        </div>
+      </div>
+
+  {{/if}}  <!-- gameCapacity -->
+
+
+</template>

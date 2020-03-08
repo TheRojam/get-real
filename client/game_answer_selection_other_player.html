@@ -1,0 +1,14 @@
+<template name='game_answer_selection_other_player'>
+  <div class='text-center'>
+    {{#with ../turns}}
+      <div id="active_question" class="animated">{{this.question}}</div>
+    {{/with}}
+  </div>
+  {{#with ../turns}}
+    <div id='answer-embrace' class='game-input-answer animated bounceIn'>{{this.answerEmbrace}}</div>
+    <div id='answer-positive' class='game-input-answer animated bounceIn'>{{this.answerPositive}}</div>
+    <div id='answer-negative' class='game-input-answer animated bounceIn'>{{this.answerNegative}}</div>
+    <div id='answer-hate'  class='game-input-answer animated bounceIn'>{{this.answerHate}}</div>
+    <div id='answer-avoid'  class='game-input-answer animated bounceIn'>{{this.answerAvoid}}</div>
+  {{/with}}
+</template>

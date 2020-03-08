@@ -1,0 +1,178 @@
+<template name="game">
+
+  {{#if Template.subscriptionsReady}}
+    {{#with matchData}}
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper grey accent-2" id="chat_menu">
+            <a href="#" class="right navbar-clock">{{{countdownClock}}}</a>
+            <ul id="nav-mobile" class="left">
+              <li>
+                  <i class="material-icons">arrow_back</i>
+              </li>
+              <li>
+                  <img class="circle game-profile-picture" src="{{selectedPlayer.profile.photo}}" style="{{blurImage userMatchEndGame._id}}">
+              </li>
+              <li>
+                {{ selectedPlayer.profile.name }}
+              </li>
+            </ul>
+            <div class="row center">
+              <div class="col s12 black-text chat-progress-higher">
+                {{> chat_progress_bar matchId = match._id}}
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+
+        <div class="content content-grey text-center">
+
+            <div class="row">
+               <div class="col s12 center"  id="chat-view">
+                 {{#if scrollDown}}
+                 {{/if}}
+
+
+                {{#if match}}
+
+                  <div class="row no-margins">
+                  	<div class="col s12 center-align">
+                      {{runTurn}}
+                      {{newTurnPublished}}
+
+                      {{>messages_history_match summary.pastTurns}}
+                      {{#if mustAddSpacingOnHistory}}
+                        <div style="padding-top: 16em;"></div>
+                      {{/if}}
+
+                    </div>
+                  </div>
+
+                  {{#if gameFinished}}
+                    <div class="content-padded">
+                      <p class="center big-grey-title">{{_ "chat_finished" selectedPlayer.profile.name}}</p>
+                      {{#if userMatchEndGame}}
+                        <div class="center">
+                          <img class="matchSelector big-profile-picture text-center-game" src="{{userMatchEndGame.otherPlayer.profile.photo}}">
+                        </div>
+                      {{/if}}
+                      <div class="text-center-game panel">
+                        {{_ "prioritize_partners"}}
+                      </div>
+                    </div>
+
+                  {{else}}
+                      {{removeSpacingOnHistory}}
+
+                      {{#if activeUser}}
+                        {{#with turns}}
+
+                          {{#if activeUserHasChoosenQuestion}}
+                            {{#if establishedQuestionAndPreferedAnswer}}
+                              <!-- shows asked question & waiting info -->
+                              {{#with ../turns}}
+                                <div class="row center no-margins">
+                                	<div class="col s12">
+                                    <div class="row center no-margins">
+                                    	<div class="col s12">
+                                        <div class="right-question animated bounceInRight">
+                                          <div class="right-bubble">
+                                            <div class="game-message-question">
+                                              {{this.question}}
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                    <!-- TO DO: Check if first turn -->
+                              {{/with}}
+                              <div class="center">
+                                <p class="wait-text animated pulse infinite">{{_ "please_wait_answer"}}</p>
+                              </div>
+                              <!-- shows asked question & waiting info -->
+
+                            {{else}} <!-- establishedQuestionAndPreferedAnswer -->
+                              {{addSpacingOnHistory}} <!-- needs to show spacer to scroll -->
+                              <!-- shows active user to select acceptances -->
+                                <div class="floating-bottom-box">
+                                  <div class="row no-margins">
+                                    <div class="col s12 bar bar-tab no-padding center grey accent-2">
+                                      <div class="chat-call-to-action">{{_ "select_acceptable_answers"}}</div>
+                                      {{> game_answer_selection}}
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- BOTTOM SELECT AREA: active user selects question or answer -->
+
+                              {{/if}} <!-- establishedQuestionAndPreferedAnswer -->
+                            {{else}} <!-- activeUserHasChoosenQuestion -->
+                            {{addSpacingOnHistory}} <!-- needs to show spacer to scroll -->
+                            <!-- shows active User to select question -->
+                              <div class="floating-bottom-box">
+                                <div class="row no-margins">
+                                  <div class="col s12 bar bar-tab no-padding grey accent-2">
+                                    <div class="chat-call-to-action">{{_ "select_question_ask" selectedPlayer.profile.name}}</div>
+                                    {{> game_question_selection}}
+                                  </div>
+                                </div>
+                              </div>
+                            {{/if}} <!-- activeUserHasChoosenQuestion -->
+
+                        {{/with}} <!-- turns -->
+                      {{else}} <!-- activeUser -->
+                      <!-- CHATBUBBLES passive user -->
+                        {{#with turns}}
+                          {{#if activeUserHasChoosenQuestion}}
+                            {{#if passiveSelectedAnswer}}
+                              <!-- nothing to display here -->
+                              <div class="center">
+                                <p class="wait-text animated pulse infinite">{{_ "Wait"}}</p>
+                              </div>
+                            {{else}} <!-- passiveSelectedAnswer -->
+                            <!-- shows passive User to select answer -->
+                              {{addSpacingOnHistory}} <!-- needs to show spacer to scroll -->
+                              <div class="floating-bottom-box">
+                                <div class="row no-margins">
+                                  <div class="col s12 bar bar-tab no-padding grey accent-2">
+                                    <div class="chat-call-to-action">{{_ "answer_question"}}</div>
+                                    {{> game_answer_selection_other_player}}
+                                  </div>
+                                </div>
+                              </div>
+
+                            {{/if}} <!-- passiveSelectedAnswer -->
+
+                          {{else}} <!-- activeUserHasChoosenQuestion -->
+                            <div class="center">
+                              <p class="wait-text animated pulse infinite">{{_ "please_wait_others_select_question"}}</p>
+                            </div>
+                          {{/if}} <!-- activeUserHasChoosenQuestion -->
+                        {{/with}} <!-- turns -->
+                      {{/if}} <!-- active User -->
+
+                  {{/if}} <!-- game finished -->
+
+            		{{/if}}
+
+              </div>
+            </div>
+
+        </div>
+
+
+  	{{/with}}  <!-- game -->
+	{{else}} <!-- Template.subscriptionsReady -->
+     <div class='content content-grey'>
+       <div style='display:table; width: 100%; height: 100%; text-align: center;'>
+         <img src='/img/logo-white-red.png' style='margin-top:5em; margin-bottom: 5em; max-width:320px;'>
+         <br><br><br>
+         {{> spinner}}
+       </div>
+    </div>
+	{{/if}}
+
+</template>

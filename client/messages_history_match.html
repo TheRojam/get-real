@@ -1,0 +1,21 @@
+<template name="messages_history_match">
+  <div id="messages">
+    {{#each ../pastTurns}}
+      <div class="row no-bottom-margin">
+        {{#if userIsPassive}}
+        	<div class="col s2">
+            <img class="circle chat-profile-picture" src="{{profilePhoto}}" style="{{blurImage}}">
+          </div>
+        {{/if}}
+      	<div class="col s10">
+          {{{userAnswer}}}
+        </div>
+        {{#if userIsActive}}
+        	<div class="col s2">
+            <img class="circle chat-profile-picture" src="{{profilePhoto}}" style="{{blurImage}}">
+          </div>
+        {{/if}}
+      </div>
+    {{/each}}
+  </div>
+</template>

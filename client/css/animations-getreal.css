@@ -1,0 +1,80 @@
+.heartbeat-photo, .info-pulsate {
+	animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+.text-focus-in-title {
+	animation: text-focus-in 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  font-size: 140%;
+  font-weight: bold;
+}
+
+.text-focus-in {
+	animation: text-focus-in 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+.text-focus-in-1s {
+	animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 1s both;
+}
+.text-focus-in-3s {
+	animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 3s both;
+}
+.text-focus-in-5s {
+	animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 5s both;
+}
+
+.puff-in-center {
+	animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+.puff-in-center-7s {
+	animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) 7s both;
+}
+
+.bounce-in-sidenav {
+	animation: bounce-in-fwd 1.5s both;
+}
+
+.bounce-out-bck-5s {
+	animation: bounce-out-bck 1.5s 5s both;
+}
+
+.slide-out-bck-center-5s {
+	animation: slide-out-bck-center 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) 5s both;
+}
+
+.bounce-in-fwd {
+	animation: bounce-in-fwd 1.1s both;
+}
+
+.bounce-in-fwd-2s {
+	animation: bounce-in-fwd 1.5s 2s both;
+}
+
+.slide-in-bck-center {
+	animation: slide-in-bck-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.slide-in-fwd-center {
+	animation: slide-in-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.slide-in-fwd-center-2s {
+	animation: slide-in-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
+}
+
+.slide-in-fwd-center-5s {
+	animation: slide-in-fwd-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) 5s both;
+}
+
+.scale-in-center {
+	animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.slide-in-blurred-left {
+	animation: slide-in-blurred-left 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+}
+
+
+.slide-in-blurred-right {
+	animation: slide-in-blurred-right 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+}

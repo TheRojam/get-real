@@ -1,0 +1,43 @@
+.ranking-picture{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  margin-left: -25px !important;
+}
+
+.ranking-number-container{
+  height: 60px;
+}
+
+.ranking-picture-container{
+  height: 60px;
+}
+
+.ranking-profile-name{
+  font-size: 130%;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.ranking-profile-rank{
+  font-size: 130%;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.ranking-list{
+  border-radius: 5px;
+}
+
+.ranking-entry{
+  padding: 5px 0px;
+  border-radius: 5px;
+}
+
+.rank-numbers{
+  font-size: 200%;
+}
+
+.icon-more-vertical{
+  margin-top: 0.2em;
+}

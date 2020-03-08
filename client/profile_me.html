@@ -1,0 +1,245 @@
+<template name="profile_me">
+  <div class="content-bubbles">
+    <div class="container">
+      <div class="row">
+         <div class="col s12 center">
+           {{#if Template.subscriptionsReady}}
+
+             {{#with userDatas}}
+
+               {{#if isBlocked}}
+
+                 <div class="panel row sorry-no-date">
+                   <div class="col s12 white-text text-focus-in">
+                     {{_ "you_got_blocked"}}
+                   </div>
+                 </div>
+
+               {{/if}}
+
+               <div id="profile-spacer"></div>
+
+               <div class="panel row">
+                 <div class="col s12">
+
+
+                   <div class="row">
+                     <div class="col s12 center">
+                       {{#if photo}}
+                         <div>
+                           <img id="photo" class="circle" src="{{photo}}"/>
+                         </div>
+                        {{else}}
+                          <button class="btn btn-floating btn-large waves-effect" id="take_photo">
+                            <i class="heartbeat-photo material-icons green-text text-accent-2 profile-selfie-icon">add_a_photo</i>
+                          </button>
+
+                        {{/if}}
+                      </div>
+                    </div>
+
+                  {{#if photo}}
+
+                    <div class="row {{#unless hasName}} puff-in-center {{/unless}}">
+                      <div class="input-field col s12">
+                        <input class="black-text" type="text" id="name" value="{{profile.name}}">
+                        <label for="name" class="{{#if profile.name}} active {{/if}} grey-text">{{_ "write_your_name"}}</label>
+                      </div>
+                    </div>
+
+                    {{#unless hasName}}
+
+                      <div class="row">
+                        <div class="col s12">
+                          <span class="text-focus-in-title red-text text-accent-2">{{_ "please_write_name_title"}}</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12">
+                          <span class="text-focus-in-1s">{{_ "please_write_name_text"}}</span>
+                        </div>
+                      </div>
+
+                    {{/unless}}
+
+                  {{else}}
+
+                    <div class="row">
+                      <div class="col s12">
+                        <span class="text-focus-in-title red-text text-accent-2">{{_ "please_take_selfie_title"}}</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12">
+                        <span class="text-focus-in-1s">{{_ "please_take_selfie_text"}}</span>
+                      </div>
+                    </div>
+
+                  {{/if}}
+
+                  {{#if hasName}}
+
+                    <div class="row {{#unless hasBirthYear}} puff-in-center {{/unless}}">
+                      <div class="col s12">
+                        {{> select_birthyear}}
+                      </div>
+                    </div>
+
+                    {{#unless hasBirthYear}}
+
+                      <div class="row">
+                        <div class="col s12">
+                          <span class="text-focus-in-title red-text text-accent-2">{{_ "please_enter_birthyear_title"}}</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12">
+                          <span class="text-focus-in-1s">{{_ "please_enter_birthyear_text"}}</span>
+                        </div>
+                      </div>
+
+                    {{/unless}}
+
+                  {{/if}}
+
+                  <!-- <select name="language" id="lang">
+                    {{ #unless profile.language }}
+                      <option value="-1">{{_ "select_language"}}</option>
+                    {{ /unless }}
+                    <option value="en" selected="{{#if userProfileLanguageEn}}selected{{/if}}">{{_ "english"}}</option>
+                    <option value="de" selected="{{#if userProfileLanguageDe}}selected{{/if}}">{{_ "german"}}</option>
+                  </select> -->
+
+                  {{#if hasBirthYear}}
+
+                    <div class="row {{#unless hasGender}} puff-in-center {{/unless}}">
+                      <div class="col s12 center">
+                        {{_ "i_am"}}
+                      </div>
+                    </div>
+
+                    <div class="row {{#unless hasGender}} puff-in-center {{/unless}}">
+                      <div class="col s6">
+                        <button class="{{#if userProfileGenderMale}} btn btn-less-padding {{else}} btn btn-flat black-text btn-less-padding {{/if}} waves-effect" style='text-transform: uppercase;' value='male' id="male">{{_ "male"}}</button>
+                      </div>
+                      <div class="col s6">
+                        <button class="{{#if userProfileGenderFemale}} btn btn-less-padding {{else}} btn btn-flat black-text  btn-less-padding{{/if}} waves-effect" style='text-transform: uppercase;' value='female' id="female">{{_ "female"}}</button>
+                      </div>
+                    </div>
+
+                    {{#if hasGender}}
+
+                      <div class='row {{#unless hasGenderWanted}} puff-in-center {{/unless}}'>
+                        <div class="col s12 center">
+                          {{_ "looking_for"}}
+                        </div>
+                      </div>
+
+                      <div class="row {{#unless hasGenderWanted}} puff-in-center {{/unless}}">
+                        <div class="col s6 align-right">
+                          <button class="{{#if userProfileGenderWantedMale}} btn btn-less-padding {{else}} btn btn-flat black-text btn-less-padding {{/if}} waves-effect" style='text-transform: uppercase;' id="maleWanted">{{_ "male"}}</button>
+                        </div>
+                        <div class="col s6 align-left">
+                          <button class="{{#if userProfileGenderWantedFemale}} btn btn-less-padding {{else}} btn btn-flat black-text btn-less-padding {{/if}} waves-effect" style='text-transform: uppercase;' id="femaleWanted">{{_ "female"}}</button>
+                        </div>
+                      </div>
+
+                    {{/if}}
+
+                    <div class="row text-focus-in-1s">
+                      <div class="col s12 align-right">
+                        <div class="smaller-text">
+                          {{_ "non_heteronormative_text"}}
+                          <a href="#" onclick="window.open('https://www.getreal.app/nicht-heteronormativ', '_system');" class="red-text text-accent-2"> {{_ "non_heteronormative_link"}} </a>
+                        </div>
+                      </div>
+                    </div>
+
+                  {{/if}}  <!-- hasBirthYear -->
+
+                  {{#if hasGenderWanted}}
+
+                    <div class='row {{#unless hasAgePreference}} puff-in-center {{/unless}}'>
+                      <div class="col s12 center">
+                        {{_ "wanted_age"}}
+                      </div>
+                    </div>
+
+                    <div class="row {{#unless hasAgePreference}} puff-in-center {{/unless}}">
+                      <div class="col s4">
+                        <button class="{{#if userProfileAgeWantedYounger}} btn btn-small btn-less-padding {{else}} btn btn-flat btn-small black-text btn-less-padding {{/if}} waves-effect" style='text-transform: uppercase;' id="youngerWanted">{{_ "younger"}}</button>
+                      </div>
+                      <div class="col s4">
+                        <button class="{{#if userProfileAgeWantedSame}} btn btn-small btn-less-padding {{else}} btn btn-flat btn-small black-text btn-less-padding {{/if}} waves-effect" style='text-transform: uppercase;' id="sameWanted">{{_ "same"}}</button>
+                      </div>
+                      <div class="col s4">
+                        <button class="{{#if userProfileAgeWantedOlder}} btn btn-small btn-less-padding {{else}} btn btn-flat btn-small black-text btn-less-padding {{/if}} waves-effect" style='text-transform: uppercase;' id="olderWanted">{{_ "older"}}</button>
+                      </div>
+                    </div>
+
+                    {{#unless hasAgePreference}}
+
+                      <div class="row">
+                        <div class="col s12">
+                          <span class="text-focus-in-title red-text text-accent-2">{{_ "explain_age_preference_title"}}</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col s12">
+                          <span class="text-focus-in-1s">{{_ "explain_age_preference_text"}}</span>
+                        </div>
+                      </div>
+
+                    {{/unless}}
+
+                    <div class="row"></div>
+
+                  {{/if}}
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 center">
+                    <button class='btn-flat btn-primary' id="change_password_btn">{{_ 'change_password_btn'}}</button>
+                  </div>
+                </div>
+                {{#if profileComplete}}
+                  <div class="row">
+                    <div class="col s12 center">
+                      <!-- <img src='img/next.png' id="next_event_registration"> -->
+                      <button class='btn waves-effect waves-light green accent-2' id="next_event_registration">
+                        {{_ 'profile_ready'}}
+                      </button>
+                    </div>
+                  </div>
+                  {{#if isApproved}}
+                    {{> side_nav}}
+                  {{/if}}
+                {{else}}
+                  <div class="row">
+                    <div class="col s12 center">
+                      <!-- <img src='img/next.png' id="waiting_for_input">   -->
+                      <button class='btn-flat btn-primary disabled' id="waiting_for_input">{{_ 'profile_not_ready'}}</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s12 center">
+                      <button class='btn btn-primary' id="logout-btn">{{_ "sn_log_out"}}</button>
+                    </div>
+                  </div>
+                {{/if}}
+                <div class="row">
+                  <div class="col s12 center">
+                    <a href="#!" class="btn btn-floating btn-large green accent-2" id="alertprofile"><i class="material-icons">save</i></a>
+                  </div>
+                </div>
+
+
+            {{/with}}
+          {{/if}}
+        </div>
+      </div>
+      <div class="row"></div>
+    </div>
+  </div>
+</template>

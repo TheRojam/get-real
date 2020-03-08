@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        
+        mavenLocal()
+		google()
+		jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:+'
+        classpath 'com.google.gms:google-services:3.0.0'
+    }
+}
+
+ext.postBuildExtras = {
+    apply plugin: com.google.gms.googleservices.GoogleServicesPlugin
+
+    def inAssetsDir = file("assets")
+    def outAssetsDir = inAssetsDir
+    def outFile = new File(outAssetsDir, "cdvasset.manifest")
+
+   }
+configurations.all {
+  resolutionStrategy {
+    force 'com.android.support:support-v4:26.1.0'
+  }
+}

@@ -1,0 +1,74 @@
+<template name="not_approved">
+  <div class="content-login">
+    <div class='container'>
+      <div class="row">
+         <div class="col s12 center">
+
+          <div class="procdeure-spacer"></div>
+
+          <div class="row center">
+            <div class="col s2"></div>
+            <div class="col s8">
+              <img src='/img/logo-white-red.png' class="responsive-img">
+            </div>
+            <div class="col s2"></div>
+          </div>
+
+          <div class="procdeure-spacer"></div>
+
+          {{#if wasntAlreadyInvited}}
+
+            <div class="row slide-in-fwd-center">
+              <div class="col s12">
+                <div class="panel sorry-no-date">
+                  <h4>{{_ "welcome_not_approved"}}</h4>
+                  <p>{{_ "admin_accepts"}}</p>
+               </div>
+              </div>
+            </div>
+
+          {{else}}
+
+            <div class="row slide-in-fwd-center">
+              <div class="col s12">
+                <div class="panel sorry-no-date">
+                  <h4>{{_ "thanks_for_correcting"}}</h4>
+                  <p>{{_ "admin_checks"}}</p>
+               </div>
+              </div>
+            </div>
+
+          {{/if}}
+
+          <div class="row bounce-in-fwd-center">
+            <div class="col s12">
+              <button href="" id="btn-to-profile" class="btn waves-effect green accent-2">{{_ "sn_edit_profile"}}</button>
+            </div>
+          </div>
+
+          {{#if wasntAlreadyInvited}}
+
+            <div class="row bounce-in-fwd-2s">
+              <div class="col s12">
+                <div class="panel">
+                  <p>{{_ "enter_invitation_code"}}</p>
+                  <div class="input-field invitation_code_input">
+                    <input id="invitation_code" type="text">
+                    <label for="invitation_code">{{_ "invitation_code_input"}}</label>
+                    <span id="invitation_code_helper" class="helper-text red-text text-accent-2"></span>
+                 </div>
+                 <button href="" id="sent_invitation_code" class="btn waves-effect green accent-2">{{_ "check_invitation_code"}}</button>
+                </div>
+              </div>
+            </div>
+
+          {{/if}}
+
+        </div>
+      </div>
+      <div class="row"></div>
+      {{#if isApproved}}
+      {{/if}}
+    </div>
+  </div>
+</template>

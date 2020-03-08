@@ -1,0 +1,69 @@
+<template name="game_answer_selection">
+  <!-- START GAME ANSWER SELECTION -->
+  <div class="text-center">
+    {{#with ../turns}}
+      <div id="active_question" class="animated">{{this.question}}</div>
+    {{/with}}
+  </div>
+  <!-- {{#if establishPossibleAnswers}} -->
+    <p id="answer-embrace" class="left-align game-input-answer " style="{{#if setBackgroundEmbrace}}background-color: #fff;{{else}}{{/if}}">
+      <label class="grey-text text-darken-3">
+        {{#if setBackgroundEmbrace}}
+          <input id="check-answer-embrace" type="checkbox" checked/>
+        {{else}}
+          <input id="check-answer-embrace" type="checkbox" />
+        {{/if}}
+        <span>{{this.answerEmbrace}}</span>
+      </label>
+    </p>
+    <p id="answer-positive" class="left-align game-input-answer " style="{{#if setBackgroundPositive}}background-color: #fff;{{else}}{{/if}}">
+      <label class="grey-text text-darken-3">
+        {{#if setBackgroundPositive}}
+          <input id="check-answer-positive" type="checkbox" checked/>
+        {{else}}
+          <input id="check-answer-positive" type="checkbox" />
+        {{/if}}
+        <span>{{this.answerPositive}}</span>
+      </label>
+    </p>
+    <p id="answer-negative" class="left-align game-input-answer " style="{{#if setBackgroundNegative}}background-color: #fff;{{else}}{{/if}}">
+      <label class="grey-text text-darken-3">
+        {{#if setBackgroundNegative}}
+          <input id="check-answer-negative" type="checkbox" checked/>
+        {{else}}
+          <input id="check-answer-negative" type="checkbox" />
+        {{/if}}
+        <span>{{this.answerNegative}}</span>
+      </label>
+    </p>
+    <p id="answer-hate" class="left-align game-input-answer " style="{{#if setBackgroundHate}}background-color: #fff;{{else}}{{/if}}">
+      <label class="grey-text text-darken-3">
+        {{#if setBackgroundHate}}
+          <input id="check-answer-hate" type="checkbox" checked/>
+        {{else}}
+          <input id="check-answer-hate" type="checkbox" />
+        {{/if}}
+        <span>{{this.answerHate}}</span>
+      </label>
+    </p>
+
+  <!-- {{/if}} -->
+
+
+  <div id="prio-buttons">
+    <div class="row no-margins">
+      <div class="col s12 center">
+        <div class="chat-call-to-action">{{_ "set_theme_priority"}}</div>
+      </div>
+    </div>
+    <div class="row no-margins center">
+      <div class="col s6">
+        <button class="btn waves-effect {{#if disableButtons}} disabled {{/if}}" id="low">{{_ "not_important"}}</button>
+      </div>
+      <div class="col s6">
+        <button class="btn waves-effect {{#if disableButtons}} disabled {{/if}}" id="high">{{_ "important"}}</button>
+      </div>
+    </div>
+  </div>
+</template>
+

@@ -1,0 +1,146 @@
+<template name="feedback_form">
+  <div class="content-bubbles">
+    <div class='container'>
+      <div class="row">
+         <div class="col s12">
+           {{#if Template.subscriptionsReady}}
+             {{#with feedbackData}}
+
+               {{#if inTutorial}}
+
+                 <div id="feedback-spacer"></div>
+
+                <div class="tutorial-fixed panel green accent-2 row tooltipped" data-tooltip='{{_ "you_are_in_tutorial"}}'>
+                  {{_ "tutorial_mode"}}
+                  <i class="tiny material-icons supper">info_outline</i>
+                </div>
+
+               {{/if}}
+
+               <div id="feedback-spacer"></div>
+
+               <div id="feedback_page_1">
+                  <div class="feedback_init_text panel-paddings panel tooltipped title red-text text-accent-2" data-tooltip='{{_ "feedback_init_text"}}'>
+                      {{_ "feedback_init_title"}}
+                      <i class="tiny material-icons bounce-out-bck-5s supper">info_outline</i>
+                  </div>
+                  <div class="feedback_check_title white-text">
+                      <h5>{{_ "feedback_check_title"}}</h5>
+                  </div>
+                  <div class="feedback_check">
+                    <div class="row panel">
+                      <div class="col s12">
+                        <label class="no-border">
+                            <input type="checkbox" id='feedback_1_pos' name='feedback_1' value='true' checked="{{feedback.feedback_1}}">
+                            <span for="feedback_1_pos" class="black-text"> {{_ "feedback_1"}}</span><br>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row panel">
+                      <div class="col s12">
+                        <label class="no-border">
+                            <input type="checkbox" id='feedback_2_pos' name='feedback_2' value='true' checked="{{feedback.feedback_2}}">
+                            <span for="feedback_2_pos" class="black-text"> {{_ "feedback_2" dateName}}</span><br>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row panel">
+                      <div class="col s12">
+                        <label class="no-border">
+                            <input type="checkbox" id='feedback_3_pos' name='feedback_3' value='true' checked="{{feedback.feedback_3}}">
+                            <span for="feedback_3_pos" class="black-text"> {{_ "feedback_3"}}</span><br>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row panel">
+                      <div class="col s12">
+                        <label class="no-border">
+                            <input type="checkbox" id='feedback_4_pos' name='feedback_4' value='true' checked="{{feedback.feedback_4}}">
+                            <span for="feedback_4_pos" class="black-text"> {{_ "feedback_4"}}</span><br>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row panel">
+                      <div class="col s12">
+                        <label class="no-border">
+                            <input type="checkbox" id='feedback_5_pos' name='feedback_5' value='true' checked="{{feedback.feedback_5}}">
+                            <span for="feedback_5_pos" class="black-text"> {{_ "feedback_5"}}</span><br>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="feedback_check_title white-text">
+                        <h5>{{_ "feedback_action_title"}}</h5>
+                    </div>
+                    <div class="row panel green accent-2">
+                      <div class="col s12">
+                        <label class="no-border">
+                            <input type="checkbox" id='feedback_6_pos' name='feedback_6' value='true' checked="{{feedback.feedback_6}}">
+                            <span for="feedback_6_pos" class="black-text black-text"> {{_ "feedback_6"}}</span><br>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row panel green accent-2">
+                      <div class="col s12">
+                        <label class="no-border">
+                            <input type="checkbox" id='feedback_7_pos' name='feedback_7' value='true' checked="{{feedback.feedback_7}}">
+                            <span for="feedback_7_pos" class="black-text"> {{_ "feedback_7" dateName}}</span><br>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="feedback-spacer"></div>
+                  <div class="row">
+                    <div class="col s12 center">
+                      <button class="btn waves-effect" id="next_step">{{_ "next"}}</button>
+                    </div>
+                  </div>
+              </div>
+
+              <div id="feedback_page_2" style="display:none;">
+                <div class="row">
+                  <div class="col s12 panel">
+                    <div class="feedback_date_title">
+                        <h5>{{_ "feedback_date_title" dateName}}</h5>
+                    </div>
+                    <textarea id="feedback_date_content" style="height:180px !important;" name="feedback_date_content" placeholder='{{_ "feedback_date_title_placeholder"}}' class="no-border">{{feedback.free_feedback_date}}</textarea>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col s12 panel">
+                    <div class="feedback_app_title">
+                        <h5>{{_ "feedback_app_title"}}</h5>
+                    </div>
+                    <textarea id="feedback_app_content" style="height:180px !important;" name="feedback_app_content" placeholder='{{_ "feedback_app_title_placeholder"}}' class="no-border">{{feedback.free_feedback_app}}</textarea>
+                  </div>
+                </div>
+
+                <!-- <div class="feedback_thankyou">
+                    <p>{{_ "feedback_thankyou"}}</p>
+                </div> -->
+                <div class="row">
+                  <div class="col s12 center">
+                    <button class="btn waves-effect disabled" id="feedback_finish">{{_ "feedback_thankyou"}} <span id="myTimer"></span> </button>
+                  </div>
+                </div>
+              </div>
+
+            {{/with}}
+            <script>
+              $( document ).ready(function() {
+                $('.tooltipped').tooltip();
+              });
+            </script>
+          {{else}}
+            <div style='margin-top:25em;'>
+              {{> spinner}}
+            </div>
+          {{/if}}
+      </div>
+      </div>
+      {{> side_nav}}
+      <div class="row"></div>
+    </div>
+  </div>
+</template>

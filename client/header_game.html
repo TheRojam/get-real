@@ -1,0 +1,14 @@
+<!-- Old Header in Game -->
+<template name="header_game">
+  <div class="bar chat-menu">
+    <img class="player-profile-picture" src="{{currentUser.profile.photo}}" style="position: relative;">
+    <a id="chat_menu" style="color:white;position: relative;">
+      <img src="img/ranking_icon.png" class="ranking-button">
+    </a>
+    {{#each ../matches}}
+      <div class="pull-right">
+        <img style="{{blurImage _id}}; position: relative;" id="{{_id._str}}" value="{{_id._str}}" class="matchSelector game-profile-picture" data-matchid="{{_id._str}}" data-id="{{otherPlayer._id}}" src="{{otherPlayer.profile.photo}}">
+      </div>
+    {{/each}}
+  </div>
+</template>

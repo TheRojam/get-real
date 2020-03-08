@@ -1,0 +1,65 @@
+<template name="chat_history">
+
+  <div class="chat-box">
+    {{#if Template.subscriptionsReady}}
+      {{#with matchData}}
+        <div class="navbar-fixed">
+          <nav>
+            <div class="nav-wrapper grey accent-2" id="back-btn">
+              <ul id="nav-mobile" class="left">
+                <li>
+                    <i class="material-icons">arrow_back</i>
+                </li>
+                <li>
+                    <img class="circle game-profile-picture" src="{{candidate.profile.photo}}">
+                </li>
+                <li>
+                  {{ candidate.profile.name }}
+                </li>
+              </ul>
+              <div class="row center">
+                <div class="col s12 black-text chat-progress-higher">
+                  {{> chat_progress_bar matchId = match._id}}
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+
+          <div class="content content-grey text-center">
+
+              <div class="row">
+                 <div class="col s12 center"  id="chat-view">
+
+                  {{#if match}}
+
+                    <div class="row no-margins">
+                    	<div class="col s12 center-align">
+
+                        {{>messages_history_match summary.pastTurns}}
+
+                      </div>
+                    </div>
+
+              		{{/if}}
+
+                </div>
+              </div>
+
+          </div>
+
+
+    	{{/with}}  <!-- game -->
+  	{{else}} <!-- Template.subscriptionsReady -->
+       <div class='content content-grey'>
+         <div style='display:table; width: 100%; height: 100%; text-align: center;'>
+           <img src='/img/logo-white-red.png' style='margin-top:5em; margin-bottom: 5em; max-width:320px;'>
+           <br><br><br>
+           {{> spinner}}
+         </div>
+      </div>
+  	{{/if}}
+
+  </div>
+</template>

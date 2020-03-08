@@ -1,0 +1,11 @@
+<template name="chat_progress_bar">
+  <div class="row center no-margins chat-progress-row">
+    {{#with progressBarFields matchId}}
+      {{#each turnClass in turnClasses}}
+        <div class="col chat-progress-col {{ turnClass }}" style="width: {{ cellWidth }}%">
+          {{#if (isTurn @index turnCount) }} {{ turnCount }} {{else}} &nbsp; {{/if}}
+        </div>
+      {{/each}}
+    {{/with}}
+  </div>
+</template>
